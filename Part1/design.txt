@@ -1,11 +1,50 @@
-Lexeme  regExp  token   attribute
-move    move$   MOVE    -
-turn    turn$   TURN    -
-left    left$   DIR     LEFT
-right   right$  DIR     RIGHT
-digit   digit$  NUM     int
-ident   ident$  ID      symbol
-if      if$      IF      -
-then    then$    THEN    -
-else    else$    ELSE    -
-while   while$   WHILE   -
+| Lexeme                | Token               | Description                                                                 | Regular Expression               |   |   |     |
+| --------------------- | ------------------- | --------------------------------------------------------------------------- | -------------------------------- | - | - | --- |
+| `WORLD`               | `WORLD`             | Start of Cleaning World declaration                                         | `WORLD`                          |   |   |     |
+| `AGENT`               | `AGENT`             | Start of Agent program block                                                | `AGENT`                          |   |   |     |
+| `OBSTACLE_DEF`        | `T_OBSTACLE_DEF`    | Declares fixed obstacle locations in the Cleaning World                     | `\bOBSTACLE_DEF\b`               |
+| `DIRT_DEF`            | `T_DIRT_DEF`        | Declares initial dirt locations in the Cleaning World                       | `\bDIRT_DEF\b`                   |
+| `SIZE`                | `SIZE`              | World dimensions (rows, cols)                                               | `SIZE`                           |   |   |     |
+| `ENTRY`               | `ENTRY`             | Entry cell + direction                                                      | `ENTRY`                          |   |   |     |
+| `EXIT`                | `EXIT`              | Exit cell + direction                                                       | `EXIT`                           |   |   |     |
+| `VAR`                 | `VAR`               | Variable declaration keyword                                                | `VAR`                            |   |   |     |
+| `IF`                  | `IF`                | Conditional start                                                           | `IF`                             |   |   |     |
+| `THEN`                | `THEN`              | Then-branch marker                                                          | `THEN`                           |   |   |     |
+| `ELSE`                | `ELSE`              | Else-branch marker                                                          | `ELSE`                           |   |   |     |
+| `ENDIF`               | `ENDIF`             | End of `IF`                                                                 | `ENDIF`                          |   |   |     |
+| `WHILE`               | `WHILE`             | Loop start                                                                  | `WHILE`                          |   |   |     |
+| `DO`                  | `DO`                | Loop body marker                                                            | `DO`                             |   |   |     |
+| `ENDWHILE`            | `ENDWHILE`          | End of `WHILE`                                                              | `ENDWHILE`                       |   |   |     |
+| `MOVE`                | `MOVE`              | Move action keyword                                                         | `MOVE`                           |   |   |     |
+| `TURN`                | `TURN`              | Turn action keyword                                                         | `TURN`                           |   |   |     |
+| `LEFT`                | `LEFT`              | Turn left 90°                                                               | `LEFT`                           |   |   |     |
+| `RIGHT`               | `RIGHT`             | Turn right 90°                                                              | `RIGHT`                          |   |   |     |
+| `CLEAN`               | `CLEAN`             | Pick up dirt at current cell                                                | `CLEAN`                          |   |   |     |
+| `SENSE`               | `SENSE`             | Start of sensing predicate                                                  | `SENSE`                          |   |   |     |
+| `DIRT`                | `DIRT`              | Used with `SENSE` to check dirt here                                        | `DIRT`                           |   |   |     |
+| `OBSTACLE`            | `OBSTACLE`          | Used with `SENSE` to check obstacle ahead                                   | `OBSTACLE`                       |   |   |     |
+| `EXIT_HERE`           | `EXIT_HERE`         | True if current cell is an exit                                             | `EXIT_HERE`                      |   |   |     |
+| `EXIT_AHEAD`          | `EXIT_AHEAD`        | True if an exit is directly ahead                                           | `EXIT_AHEAD`                     |   |   |     |
+| `EXIT_FOUND`          | `EXIT_FOUND`        | True if agent has reached a valid exit (not entry)                          | `EXIT_FOUND`                     |   |   |     |
+| `HAS_UNVISITED`       | `HAS_UNVISITED`     | True if internal map has unvisited reachable cells                          | `HAS_UNVISITED`                  |   |   |     |
+| `MOVE_TO_UNVISITED`   | `MOVE_TO_UNVISITED` | Move one step along a known path toward an unvisited cell                   | `MOVE_TO_UNVISITED`              |   |   |     |
+| `BACKTRACK`           | `BACKTRACK`         | Move along stored path to previous branching point (map-based backtracking) | `BACKTRACK`                      |   |   |     |
+| `REPORT`              | `REPORT`            | Output final value (e.g., dirt count)                                       | `REPORT`                         |   |   |     |
+| `NOT`                 | `NOT`               | Logical negation                                                            | `NOT`                            |   |   |     |
+| `AND`                 | `AND`               | Logical and                                                                 | `AND`                            |   |   |     |
+| `OR`                  | `OR`                | Logical or                                                                  | `OR`                             |   |   |     |
+| `N` | `E` | `S` | `W` | `DIR`               | Cardinal directions for ENTRY/EXIT                                          | `(N                              | E | S | W)` |
+| Identifier            | `ID`                | Names for variables, world, agent                                           | `letter (letter \| digit \| _)*` |   |   |     |
+| Integer literal       | `INT_LIT`           | Non-negative integer constants                                              | `digit+`                         |   |   |     |
+| `=`                   | `ASSIGN`            | Assignment                                                                  | `=`                              |   |   |     |
+| `+`                   | `PLUS`              | Addition                                                                    | `\+`                             |   |   |     |
+| `-`                   | `MINUS`             | Subtraction                                                                 | `-`                              |   |   |     |
+| `==`                  | `EQ`                | Equals comparison                                                           | `==`                             |   |   |     |
+| `!=`                  | `NEQ`               | Not-equals comparison                                                       | `!=`                             |   |   |     |
+| `<`                   | `LT`                | Less-than                                                                   | `<`                              |   |   |     |
+| `>`                   | `GT`                | Greater-than                                                                | `>`                              |   |   |     |
+| `{`                   | `LBRACE`            | Left brace                                                                  | `{`                              |   |   |     |
+| `}`                   | `RBRACE`            | Right brace                                                                 | `}`                              |   |   |     |
+| `;`                   | `SEMICOLON`         | Statement terminator                                                        | `;`                              |   |   |     |
+| Whitespace            | — (ignored)         | Token separator (space, tab, newline)                                       | `[ \t\r\n]+`                     |   |   |     |
+| Line comment          | — (ignored)         | From `//` to end of line                                                    | `//[^\n]*`                       |   |   |     |

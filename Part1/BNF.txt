@@ -1,0 +1,82 @@
+<program> ::= <world_def> <agent_def>
+
+--- WORLD DEFINITION
+
+<world_def> ::= WORLD ID "{" <world_stmt_list> "}"
+
+<world_stmt_list> ::= <world_stmt> ";"
+                    | <world_stmt> ";" <world_stmt_list>
+
+<world_stmt> ::= SIZE INT_LIT INT_LIT
+               | ENTRY INT_LIT INT_LIT <dir>
+               | EXIT INT_LIT INT_LIT <dir>
+               | OBSTACLE_DEF <coord_list>
+               | DIRT_DEF <coord_list>
+
+<coord_list> ::= <coord>
+               | <coord> "," <coord_list>
+
+<coord> ::= "(" INT_LIT "," INT_LIT ")"
+
+<dir> ::= N | E | S | W
+
+
+
+--- AGENT DEFINITION
+
+<agent_def> ::= AGENT ID "{" <stmt_list> "}"
+
+<stmt_list> ::= <stmt>
+              | <stmt> <stmt_list>
+
+<stmt> ::= <var_decl> ";"
+         | <assign> ";"
+         | <if_stmt>
+         | <while_stmt>
+         | <action_stmt> ";"
+         | REPORT ID ";"
+
+
+--- DECLARATIONS & EXPRESSIONS
+
+<var_decl> ::= VAR ID ASSIGN <expr>
+<assign> ::= ID ASSIGN <expr>
+
+<expr> ::= <term>
+         | <term> PLUS <expr>
+         | <term> MINUS <expr>
+
+<term> ::= <factor>
+<factor> ::= ID | INT_LIT
+
+--- CONTROL FLOW
+
+<if_stmt> ::= IF <condition> THEN <stmt_list> ENDIF ";"
+            | IF <condition> THEN <stmt_list> ELSE <stmt_list> ENDIF ";"
+
+<while_stmt> ::= WHILE <condition> DO <stmt_list> ENDWHILE ";"
+
+<condition> ::= NOT <condition>
+              | <predicate>
+              | <condition> AND <condition>
+              | <condition> OR <condition>
+
+<predicate> ::= <rel_expr>
+              | <sensor_pred>
+              | HAS_UNVISITED
+              | EXIT_FOUND
+
+<rel_expr> ::= <expr> <relop> <expr>
+<relop> ::= EQ | NEQ | LT | GT
+
+--- SENSING & ACTIONS
+
+<sensor_pred> ::= SENSE <sensor>
+<sensor> ::= DIRT | OBSTACLE | EXIT_HERE | EXIT_AHEAD
+
+<action_stmt> ::= MOVE
+                | TURN LEFT
+                | TURN RIGHT
+                | CLEAN
+                | BACKTRACK
+                | MOVE_TO_UNVISITED
