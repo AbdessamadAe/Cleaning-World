@@ -1,6 +1,6 @@
 tokens = (
     # --- World and Agent definitions ---
-    'WORLD', 'AGENT', 'SIZE', 'ENTRY', 'EXIT',
+    'WORLD', 'AGENT', 'SIZE', 'ENTRY_DEF', 'EXIT_DEF',
     'OBSTACLE_DEF', 'DIRT_DEF',
 
     # --- Directions ---
@@ -14,7 +14,7 @@ tokens = (
     'MOVE', 'TURN', 'LEFT', 'RIGHT', 'CLEAN', 'BACKTRACK',
 
     # --- Sensors & Conditions ---
-    'SENSE', 'DIRT', 'OBSTACLE', 'UNVISITED',
+    'SENSE', 'DIRT', 'OBSTACLE', 'UNVISITED', 'ENTRY', 'EXIT',
 
     # --- Functions ---
     'FUNC', 'RETURNS', 'RETURN',

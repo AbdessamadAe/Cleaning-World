@@ -5,8 +5,8 @@
 | `OBSTACLE_DEF`      | `OBSTACLE_DEF`     | `OBSTACLE_DEF`           | Declares fixed obstacle locations in the Cleaning World        |   |     |                                    |
 | `DIRT_DEF`          | `DIRT_DEF`         | `DIRT_DEF`               | Declares initial dirt locations in the Cleaning World          |   |     |                                    |
 | `SIZE`              | `SIZE`             | `SIZE`                   | World dimensions (rows, cols)                                  |   |     |                                    |
-| `ENTRY`             | `ENTRY`            | `ENTRY`                  | Entry cell + direction                                         |   |     |                                    |
-| `EXIT`              | `EXIT`             | `EXIT`                   | Exit cell + direction                                          |   |     |                                    |
+| `ENTRY_DEF`         | `ENTRY_DEF`        | `ENTRY_DEF`              | Entry cell + direction                                         |   |     |                                    |
+| `EXIT_DEF`          | `EXIT_DEF`         | `EXIT_DEF`               | Exit cell + direction                                          |   |     |                                    |
 | `N`, `E`, `S`, `W`  | `N`, `E`, `S`, `W` | `(N | E | S | W)`        | Cardinal directions for ENTRY/EXIT                             |   |     |                                    |
 | `VAR`               | `VAR`              | `VAR`                    | Variable declaration keyword                                   |   |     |                                    |
 | `IF`                | `IF`               | `IF`                     | Conditional start                                              |   |     |                                    |

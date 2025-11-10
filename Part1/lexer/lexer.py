@@ -15,7 +15,7 @@ literal_table = {}
 # --------------------------------
 TOKEN_IDS = {
     # World & Agent
-    'WORLD': 1, 'AGENT': 2, 'SIZE': 3, 'ENTRY': 4, 'EXIT': 5,
+    'WORLD': 1, 'AGENT': 2, 'SIZE': 3, 'ENTRY_DEF': 4, 'EXIT_DEF': 5,
     'OBSTACLE_DEF': 6, 'DIRT_DEF': 7,
 
     # Directions
@@ -29,26 +29,26 @@ TOKEN_IDS = {
     'MOVE': 20, 'TURN': 21, 'LEFT': 22, 'RIGHT': 23, 'CLEAN': 24, 'BACKTRACK': 25,
 
     # Sensors / Conditions
-    'SENSE': 26, 'DIRT': 27, 'OBSTACLE': 28, 'UNVISITED': 29,
+    'SENSE': 26, 'DIRT': 27, 'OBSTACLE': 28, 'UNVISITED': 29, 'ENTRY': 30, 'EXIT': 31,
 
     # Functions
-    'FUNC': 30, 'RETURNS': 31, 'RETURN': 32,
+    'FUNC': 32, 'RETURNS': 33, 'RETURN': 34,
 
     # Types
-    'TYPE_INT': 33, 'TYPE_VOID': 34,
+    'TYPE_INT': 35, 'TYPE_VOID': 36,
 
     # Logical Operators
-    'AND': 35, 'OR': 36, 'NOT': 37,
+    'AND': 37, 'OR': 38, 'NOT': 39,
 
     # Relational / Arithmetic
-    'ASSIGN': 38, 'PLUS': 39, 'MINUS': 40, 'EQ': 41, 'NEQ': 42, 'LT': 43, 'GT': 44,
+    'ASSIGN': 40, 'PLUS': 41, 'MINUS': 42, 'EQ': 43, 'NEQ': 44, 'LT': 45, 'GT': 46,
 
     # Punctuation
-    'LBRACE': 45, 'RBRACE': 46, 'LPAREN': 47, 'RPAREN': 48,
-    'COMMA': 49, 'SEMICOLON': 50,
+    'LBRACE': 47, 'RBRACE': 48, 'LPAREN': 49, 'RPAREN': 50,
+    'COMMA': 51, 'SEMICOLON': 52,
 
     # Literals & IDs
-    'INT_LIT': 51, 'ID': 52
+    'INT_LIT': 53, 'ID': 54
 }
 
 # --------------------------------
@@ -59,8 +59,8 @@ reserved = {
     'WORLD': 'WORLD',
     'AGENT': 'AGENT',
     'SIZE': 'SIZE',
-    'ENTRY': 'ENTRY',
-    'EXIT': 'EXIT',
+    'ENTRY_DEF': 'ENTRY_DEF',
+    'EXIT_DEF': 'EXIT_DEF',
     'OBSTACLE_DEF': 'OBSTACLE_DEF',
     'DIRT_DEF': 'DIRT_DEF',
 
@@ -77,6 +77,7 @@ reserved = {
 
     # Sensors / conditions
     'SENSE': 'SENSE', 'DIRT': 'DIRT', 'OBSTACLE': 'OBSTACLE', 'UNVISITED': 'UNVISITED',
+    'ENTRY': 'ENTRY', 'EXIT': 'EXIT',
 
     # Functions
     'FUNC': 'FUNC', 'RETURNS': 'RETURNS', 'RETURN': 'RETURN',
