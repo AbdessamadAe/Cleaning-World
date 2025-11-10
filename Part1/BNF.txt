@@ -1,26 +1,45 @@
 <program> ::= <world_def> <function_list_opt> <agent_def>
+    // A complete program: defines the world, optional helper functions, and the agent’s behavior.
 
 <function_list_opt> ::= ε | <function_list>
+    // Optional function section; may be empty if no user-defined functions exist.
+
 <function_list> ::= <function_decl>
+    // One or more function declarations grouped together.
 
 <function_decl> ::= FUNC ID '(' <param_list_opt> ')' RETURNS <type> '{' <stmt_list> '}'
+    // Defines a function by name, parameters, return type, and a block of statements.
+
 <param_list_opt> ::= ε | <param_list>
+    // Parameter list may be empty (no arguments).
+
 <param_list> ::= <param_decl> | <param_decl> ',' <param_list>
+    // Allows one or more comma-separated parameters.
+
 <param_decl> ::= ID
+    // Each parameter is simply an identifier (passed by value).
 
 <type> ::= TYPE_INT | TYPE_VOID
+    // Function return type — integer or void (no value returned).
 
 <world_def> ::= WORLD ID '{' <world_body> '}'
+    // Declares the cleaning world by name and defines its contents.
+
 <world_body> ::= <world_stmt> | <world_stmt> <world_body>
+    // A world consists of multiple world statements describing its layout.
+
 <world_stmt> ::= SIZE '(' INT_LIT ',' INT_LIT ')' ';'
                | ENTRY '(' INT_LIT ',' INT_LIT ',' DIR ')' ';'
                | EXIT '(' INT_LIT ',' INT_LIT ')' ';'
                | OBSTACLE_DEF '(' INT_LIT ',' INT_LIT ')' ';'
                | DIRT_DEF '(' INT_LIT ',' INT_LIT ')' ';'
+    // Defines dimensions, entry/exit locations, obstacles, and initial dirt positions.
 
 <agent_def> ::= AGENT ID '{' <stmt_list> '}'
+    // Declares the agent by name and defines its control logic (main procedure).
 
 <stmt_list> ::= <stmt> | <stmt> <stmt_list>
+    // A sequence of one or more statements forming the agent’s or function’s body.
 
 <stmt> ::= VAR ID ASSIGN <expr> ';'
          | ID ASSIGN <expr> ';'
@@ -33,12 +52,23 @@
          | REPORT <expr> ';'
          | RETURN <expr> ';'
          | <function_call> ';'
+    // Defines all executable statements:
+    // - variable declarations and assignments
+    // - conditional and looping structures
+    // - robot actions (MOVE, TURN, CLEAN, BACKTRACK)
+    // - output (REPORT) and function returns.
 
 <turn_dir> ::= LEFT | RIGHT
+    // Specifies direction for a TURN instruction.
 
 <function_call> ::= ID '(' <arg_list_opt> ')'
+    // Calls a user-defined function by name with optional arguments.
+
 <arg_list_opt> ::= ε | <arg_list>
+    // Arguments may be omitted (empty parentheses allowed).
+
 <arg_list> ::= <expr> | <expr> ',' <arg_list>
+    // One or more comma-separated argument expressions.
 
 <condition> ::= SENSE <sense_expr>
               | NOT <condition>
@@ -46,12 +76,20 @@
               | <condition> OR <condition>
               | <expr> <relop> <expr>
               | UNVISITED
+    // Logical and sensor-based conditions for IF or WHILE:
+    // - UNVISITED checks if the cell in front is unvisited.
 
 <sense_expr> ::= DIRT | OBSTACLE | EXIT | ENTRY
+    // The possible sensory predicates (environment checks).
 
 <relop> ::= EQ | NEQ | LT | GT
+    // Relational operators used in comparisons.
 
 <expr> ::= <term> | <term> PLUS <expr> | <term> MINUS <expr>
+    // Arithmetic expression supporting addition and subtraction.
+
 <term> ::= ID | INT_LIT | <function_call>
+    // Basic expression units: identifiers, constants, or function results.
 
 <dir> ::= N | E | S | W
+    // Cardinal directions used in ENTRY and TURN instructions.

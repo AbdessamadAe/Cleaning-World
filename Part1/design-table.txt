@@ -1,0 +1,56 @@
+| Lexeme              |   Token            |   Regular Expression     |   Description                                                  |   |     |                                    |
+| ------------------- | ------------------ | ------------------------ | -------------------------------------------------------------- | - | --- | ---------------------------------- |
+| `WORLD`             | `WORLD`            | `WORLD`                  | Start of Cleaning World declaration                            |   |     |                                    |
+| `AGENT`             | `AGENT`            | `AGENT`                  | Start of Agent program block                                   |   |     |                                    |
+| `OBSTACLE_DEF`      | `OBSTACLE_DEF`     | `OBSTACLE_DEF`           | Declares fixed obstacle locations in the Cleaning World        |   |     |                                    |
+| `DIRT_DEF`          | `DIRT_DEF`         | `DIRT_DEF`               | Declares initial dirt locations in the Cleaning World          |   |     |                                    |
+| `SIZE`              | `SIZE`             | `SIZE`                   | World dimensions (rows, cols)                                  |   |     |                                    |
+| `ENTRY`             | `ENTRY`            | `ENTRY`                  | Entry cell + direction                                         |   |     |                                    |
+| `EXIT`              | `EXIT`             | `EXIT`                   | Exit cell + direction                                          |   |     |                                    |
+| `N`, `E`, `S`, `W`  | `N`, `E`, `S`, `W` | `(N | E | S | W)`        | Cardinal directions for ENTRY/EXIT                             |   |     |                                    |
+| `VAR`               | `VAR`              | `VAR`                    | Variable declaration keyword                                   |   |     |                                    |
+| `IF`                | `IF`               | `IF`                     | Conditional start                                              |   |     |                                    |
+| `THEN`              | `THEN`             | `THEN`                   | Then-branch marker                                             |   |     |                                    |
+| `ELSE`              | `ELSE`             | `ELSE`                   | Else-branch marker                                             |   |     |                                    |
+| `ENDIF`             | `ENDIF`            | `ENDIF`                  | End of `IF` statement                                          |   |     |                                    |
+| `WHILE`             | `WHILE`            | `WHILE`                  | Loop start                                                     |   |     |                                    |
+| `DO`                | `DO`               | `DO`                     | Loop body marker                                               |   |     |                                    |
+| `ENDWHILE`          | `ENDWHILE`         | `ENDWHILE`               | End of `WHILE` loop                                            |   |     |                                    |
+| `MOVE`              | `MOVE`             | `MOVE`                   | Move forward one cell                                          |   |     |                                    |
+| `TURN`              | `TURN`             | `TURN`                   | Turn action keyword                                            |   |     |                                    |
+| `LEFT`              | `LEFT`             | `LEFT`                   | Turn left 90°                                                  |   |     |                                    |
+| `RIGHT`             | `RIGHT`            | `RIGHT`                  | Turn right 90°                                                 |   |     |                                    |
+| `CLEAN`             | `CLEAN`            | `CLEAN`                  | Pick up dirt at current cell                                   |   |     |                                    |
+| `SENSE`             | `SENSE`            | `SENSE`                  | Start of sensing predicate                                     |   |     |                                    |
+| `DIRT`              | `DIRT`             | `DIRT`                   | Used with `SENSE` to check for dirt                            |   |     |                                    |
+| `OBSTACLE`          | `OBSTACLE`         | `OBSTACLE`               | Used with `SENSE` to check obstacle ahead                      |   |     |                                    |
+| `EXIT`              | `EXIT`             | `EXIT`                   | True if adjacent cell is an exit                               |   |     |                                    |
+| `ENTRY`             | `ENTRY`            | `ENTRY`                  | True if adjacent cell is an entry                              |   |     |                                    |
+| `UNVISITED`         | `UNVISITED`        | `UNVISITED`              | True if the agent’s internal map has unvisited reachable cells |   |     |                                    |
+| `BACKTRACK`         | `BACKTRACK`        | `BACKTRACK`              | Move along stored path to previous branching point             |   |     |                                    |
+| `REPORT`            | `REPORT`           | `REPORT`                 | Output final computed value (e.g., dirt count)                 |   |     |                                    |
+| `NOT`               | `NOT`              | `NOT`                    | Logical negation                                               |   |     |                                    |
+| `AND`               | `AND`              | `AND`                    | Logical conjunction                                            |   |     |                                    |
+| `OR`                | `OR`               | `OR`                     | Logical disjunction                                            |   |     |                                    |
+| **Identifier**      | `ID`               | `[A-Za-z_][A-Za-z0-9_]*` | Names for variables, world, agent, or functions                |   |     |                                    |
+| **Integer literal** | `INT_LIT`          | `[0-9]+`                 | Non-negative integer constants                                 |   |     |                                    |
+| `=`                 | `ASSIGN`           | `=`                      | Assignment operator                                            |   |     |                                    |
+| `+`                 | `PLUS`             | `\+`                     | Addition operator                                              |   |     |                                    |
+| `-`                 | `MINUS`            | `-`                      | Subtraction operator                                           |   |     |                                    |
+| `==`                | `EQ`               | `==`                     | Equals comparison                                              |   |     |                                    |
+| `!=`                | `NEQ`              | `!=`                     | Not-equals comparison                                          |   |     |                                    |
+| `<`                 | `LT`               | `<`                      | Less-than comparison                                           |   |     |                                    |
+| `>`                 | `GT`               | `>`                      | Greater-than comparison                                        |   |     |                                    |
+| `{`                 | `LBRACE`           | `\{`                     | Left brace                                                     |   |     |                                    |
+| `}`                 | `RBRACE`           | `\}`                     | Right brace                                                    |   |     |                                    |
+| `(`                 | `LPAREN`           | `\(`                     | Left parenthesis                                               |   |     |                                    |
+| `)`                 | `RPAREN`           | `\)`                     | Right parenthesis                                              |   |     |                                    |
+| `,`                 | `COMMA`            | `,`                      | Comma separator                                                |   |     |                                    |
+| `;`                 | `SEMICOLON`        | `;`                      | Statement terminator                                           |   |     |                                    |
+| **Whitespace**      | — (ignored)        | `[ \t\r\n]+`             | Token separator (space, tab, newline)                          |   |     |                                    |
+| **Line comment**    | — (ignored)        | `//[^\n]*`               | From `//` to end of line                                       |   |     |                                    |
+| `FUNC`              | `FUNC`             | `FUNC`                   | Start of function declaration                                  |   |     |                                    |
+| `RETURNS`           | `RETURNS`          | `RETURNS`                | Function return type specifier                                 |   |     |                                    |
+| `RETURN`            | `RETURN`           | `RETURN`                 | Function return statement                                      |   |     |                                    |
+| `INT`               | `TYPE_INT`         | `INT`                    | Integer type                                                   |   |     |                                    |
+| `VOID`              | `TYPE_VOID`        | `VOID`                   | Void (no return value)                                         |   |     |                                    |
