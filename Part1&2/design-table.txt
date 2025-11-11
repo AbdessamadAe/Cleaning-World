@@ -1,3 +1,10 @@
+Assumptions: We assume the robot has to cover as much area as it can. For that we assume the dev
+has to use some search algorithm such as BFS. Hence we provide UNVISITED and BACKTRACK keywords since
+it is a domain specific language.
+The runtime maintains the agent’s internal map and tracks which cells have been visited.
+This allows the developer to reason about exploration progress without managing low-level
+state manually (such as queues or stacks).
+
 | Lexeme              |   Token            |   Regular Expression     |   Description                                                  |   |     |                                    |
 | ------------------- | ------------------ | ------------------------ | -------------------------------------------------------------- | - | --- | ---------------------------------- |
 | `WORLD`             | `WORLD`            | `WORLD`                  | Start of Cleaning World declaration                            |   |     |                                    |
