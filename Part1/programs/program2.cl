@@ -1,7 +1,7 @@
 WORLD SimpleWorld {
     SIZE(6, 6);
-    ENTRY(1, 1, E);
-    EXIT(6, 6);
+    ENTRY_DEF(1, 1, E);
+    EXIT_DEF(6, 6, S);
     DIRT_DEF(2, 3);
 }
 

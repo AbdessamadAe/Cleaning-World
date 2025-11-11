@@ -30,7 +30,7 @@
 
 <world_stmt> ::= SIZE '(' INT_LIT ',' INT_LIT ')' ';'
                | ENTRY_DEF '(' INT_LIT ',' INT_LIT ',' DIR ')' ';'
-               | EXIT_DEF '(' INT_LIT ',' INT_LIT ')' ';'
+               | EXIT_DEF '(' INT_LIT ',' INT_LIT ',' DIR ')' ';'
                | OBSTACLE_DEF '(' INT_LIT ',' INT_LIT ')' ';'
                | DIRT_DEF '(' INT_LIT ',' INT_LIT ')' ';'
     // Defines dimensions, entry/exit locations, obstacles, and initial dirt positions.

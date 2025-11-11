@@ -1,7 +1,7 @@
 WORLD SmallRoom {
     SIZE(5, 5);
-    ENTRY(1, 1, N);
-    EXIT(5, 5);
+    ENTRY_DEF(1, 1, N);
+    EXIT_DEF(5, 5, S);
     DIRT_DEF(3, 3);
 }
 

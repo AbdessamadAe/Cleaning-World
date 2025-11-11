@@ -1,7 +1,7 @@
 WORLD MazeRoom {
     SIZE(8, 8);
-    ENTRY(1, 1, N);
-    EXIT(8, 8);
+    ENTRY_DEF(1, 1, N);
+    EXIT_DEF(8, 8, E);
     OBSTACLE_DEF(4, 4);
     DIRT_DEF(3, 5);
 }
