@@ -11,7 +11,7 @@ tokens = (
     'WHILE', 'DO', 'ENDWHILE',
 
     # --- Actions ---
-    'MOVE', 'TURN', 'LEFT', 'RIGHT', 'CLEAN', 'BACKTRACK',
+    'MOVE', 'TURN', 'LEFT', 'RIGHT', 'CLEAN', 'BACKTRACK', 'REPORT',
 
     # --- Sensors & Conditions ---
     'SENSE', 'DIRT', 'OBSTACLE', 'UNVISITED', 'ENTRY', 'EXIT',

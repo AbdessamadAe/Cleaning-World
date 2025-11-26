@@ -26,7 +26,7 @@ TOKEN_IDS = {
     'WHILE': 17, 'DO': 18, 'ENDWHILE': 19,
 
     # Actions
-    'MOVE': 20, 'TURN': 21, 'LEFT': 22, 'RIGHT': 23, 'CLEAN': 24, 'BACKTRACK': 25,
+    'MOVE': 20, 'TURN': 21, 'LEFT': 22, 'RIGHT': 23, 'CLEAN': 24, 'BACKTRACK': 25, 'REPORT': 55,
 
     # Sensors / Conditions
     'SENSE': 26, 'DIRT': 27, 'OBSTACLE': 28, 'UNVISITED': 29, 'ENTRY': 30, 'EXIT': 31,
@@ -73,7 +73,7 @@ reserved = {
 
     # Actions
     'MOVE': 'MOVE', 'TURN': 'TURN', 'LEFT': 'LEFT',
-    'RIGHT': 'RIGHT', 'CLEAN': 'CLEAN', 'BACKTRACK': 'BACKTRACK',
+    'RIGHT': 'RIGHT', 'CLEAN': 'CLEAN', 'BACKTRACK': 'BACKTRACK', 'REPORT': 'REPORT',
 
     # Sensors / conditions
     'SENSE': 'SENSE', 'DIRT': 'DIRT', 'OBSTACLE': 'OBSTACLE', 'UNVISITED': 'UNVISITED',

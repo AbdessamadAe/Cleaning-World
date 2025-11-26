@@ -24,9 +24,9 @@ state manually (such as queues or stacks).
 | `DO`                | `DO`               | `DO`                     | Loop body marker                                               |   |     |                                    |
 | `ENDWHILE`          | `ENDWHILE`         | `ENDWHILE`               | End of `WHILE` loop                                            |   |     |                                    |
 | `MOVE`              | `MOVE`             | `MOVE`                   | Move forward one cell                                          |   |     |                                    |
-| `TURN`              | `TURN`             | `TURN`                   | Turn action keyword                                            |   |     |                                    |
-| `LEFT`              | `LEFT`             | `LEFT`                   | Turn left 90°                                                  |   |     |                                    |
-| `RIGHT`             | `RIGHT`            | `RIGHT`                  | Turn right 90°                                                 |   |     |                                    |
+| `TURN`              | `TURN`             | `TURN`                   | Turn action keyword, it should be followed by direction                                           |   |     |                                    |
+| `LEFT`              | `LEFT`             | `LEFT`                   | left 90°                                                  |   |     |                                    |
+| `RIGHT`             | `RIGHT`            | `RIGHT`                  | right 90°                                                 |   |     |                                    |
 | `CLEAN`             | `CLEAN`            | `CLEAN`                  | Pick up dirt at current cell                                   |   |     |                                    |
 | `SENSE`             | `SENSE`            | `SENSE`                  | Start of sensing predicate                                     |   |     |                                    |
 | `DIRT`              | `DIRT`             | `DIRT`                   | Used with `SENSE` to check for dirt                            |   |     |                                    |
