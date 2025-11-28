@@ -1,7 +1,7 @@
 # lexer.py
 import sys
 import ply.lex as lex
-from tokens import tokens
+from tokens import TOKEN_IDS, reserved
 import os
 
 # --------------------------------
@@ -10,84 +10,7 @@ import os
 symbol_table = {}
 literal_table = {}
 
-# --------------------------------
-# Token IDs (for parser output)
-# --------------------------------
-TOKEN_IDS = {
-    # World & Agent
-    'WORLD': 1, 'AGENT': 2, 'SIZE': 3, 'ENTRY_DEF': 4, 'EXIT_DEF': 5,
-    'OBSTACLE_DEF': 6, 'DIRT_DEF': 7,
 
-    # Directions
-    'N': 8, 'E': 9, 'S': 10, 'W': 11,
-
-    # Variables & Control
-    'VAR': 12, 'IF': 13, 'THEN': 14, 'ELSE': 15, 'ENDIF': 16,
-    'WHILE': 17, 'DO': 18, 'ENDWHILE': 19,
-
-    # Actions
-    'MOVE': 20, 'TURN': 21, 'LEFT': 22, 'RIGHT': 23, 'CLEAN': 24, 'BACKTRACK': 25, 'REPORT': 55,
-
-    # Sensors / Conditions
-    'SENSE': 26, 'DIRT': 27, 'OBSTACLE': 28, 'UNVISITED': 29, 'ENTRY': 30, 'EXIT': 31,
-
-    # Functions
-    'FUNC': 32, 'RETURNS': 33, 'RETURN': 34,
-
-    # Types
-    'TYPE_INT': 35, 'TYPE_VOID': 36,
-
-    # Logical Operators
-    'AND': 37, 'OR': 38, 'NOT': 39,
-
-    # Relational / Arithmetic
-    'ASSIGN': 40, 'PLUS': 41, 'MINUS': 42, 'EQ': 43, 'NEQ': 44, 'LT': 45, 'GT': 46,
-
-    # Punctuation
-    'LBRACE': 47, 'RBRACE': 48, 'LPAREN': 49, 'RPAREN': 50,
-    'COMMA': 51, 'SEMICOLON': 52,
-
-    # Literals & IDs
-    'INT_LIT': 53, 'ID': 54
-}
-
-# --------------------------------
-# Reserved words
-# --------------------------------
-reserved = {
-    # World & Agent
-    'WORLD': 'WORLD',
-    'AGENT': 'AGENT',
-    'SIZE': 'SIZE',
-    'ENTRY_DEF': 'ENTRY_DEF',
-    'EXIT_DEF': 'EXIT_DEF',
-    'OBSTACLE_DEF': 'OBSTACLE_DEF',
-    'DIRT_DEF': 'DIRT_DEF',
-
-    # Directions
-    'N': 'N', 'E': 'E', 'S': 'S', 'W': 'W',
-
-    # Variables & Control
-    'VAR': 'VAR', 'IF': 'IF', 'THEN': 'THEN', 'ELSE': 'ELSE',
-    'ENDIF': 'ENDIF', 'WHILE': 'WHILE', 'DO': 'DO', 'ENDWHILE': 'ENDWHILE',
-
-    # Actions
-    'MOVE': 'MOVE', 'TURN': 'TURN', 'LEFT': 'LEFT',
-    'RIGHT': 'RIGHT', 'CLEAN': 'CLEAN', 'BACKTRACK': 'BACKTRACK', 'REPORT': 'REPORT',
-
-    # Sensors / conditions
-    'SENSE': 'SENSE', 'DIRT': 'DIRT', 'OBSTACLE': 'OBSTACLE', 'UNVISITED': 'UNVISITED',
-    'ENTRY': 'ENTRY', 'EXIT': 'EXIT',
-
-    # Functions
-    'FUNC': 'FUNC', 'RETURNS': 'RETURNS', 'RETURN': 'RETURN',
-
-    # Types
-    'INT': 'TYPE_INT', 'VOID': 'TYPE_VOID',
-
-    # Logical ops
-    'AND': 'AND', 'OR': 'OR', 'NOT': 'NOT',
-}
 
 
 def _init_symbol_table():

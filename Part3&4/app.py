@@ -1,6 +1,6 @@
 # run_parser.py
-from parser import parse
-from semantic import analyze_cst
+from parser.parser import parse
+from semantics_analyzer.semantic import analyze_cst
 
 def run_file(path):
     cst = parse(filename=path)
@@ -8,8 +8,8 @@ def run_file(path):
     print(cst)
 
     ast, errors = analyze_cst(cst)
-    print("\n===== AST =====")
     if ast:
+        print("\n===== AST =====")
         print(ast)
     else:
         print("No AST produced")
@@ -18,8 +18,6 @@ def run_file(path):
         print("\n===== SEMANTIC ERRORS =====")
         for e in errors:
             print("- " + e)
-    else:
-        print("\nNo semantic errors detected.")
 
 if __name__ == '__main__':
     import sys
