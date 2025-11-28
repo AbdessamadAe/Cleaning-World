@@ -46,7 +46,12 @@ reserved = {}
 special_cases = {'INT': 'TYPE_INT', 'VOID': 'TYPE_VOID'}  # Manual overrides
 
 for token_name in TOKEN_IDS:
-    if token_name.isalpha() and not token_name.startswith(('TYPE_', 'LBRACE', 'RBRACE', 'LPAREN', 'RPAREN')):
+    if not token_name.startswith(('TYPE_', 'LBRACE', 'RBRACE', 'LPAREN', 'RPAREN')):
         reserved[token_name] = token_name
 
 reserved.update(special_cases)
+
+# --------------------------------
+# Tokens for PLY
+# --------------------------------
+tokens = tuple(TOKEN_IDS.keys())

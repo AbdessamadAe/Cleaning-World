@@ -1,7 +1,7 @@
 # lexer.py
 import sys
 import ply.lex as lex
-from tokens import TOKEN_IDS, reserved
+from tokens import TOKEN_IDS, reserved, tokens
 import os
 
 # --------------------------------
