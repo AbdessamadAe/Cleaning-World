@@ -387,25 +387,3 @@ def parse(text=None, filename=None):
         return parser.parse(text, lexer=lexer, tracking=True)
     else:
         raise ValueError("provide text or filename")
-
-def main():
-    input_file = sys.argv[1]
-    
-    if not os.path.exists(input_file):
-        print(f"Error: File '{input_file}' not found")
-        return
-    
-    print(f"Parsing: {input_file}")
-    print("-" * 40)
-    
-    try:
-        cst = parse(filename=input_file)
-        if cst:
-            print("\nParsing completed successfully!")
-        else:
-            print("Parsing failed - no CST generated")
-    except Exception as e:
-        print(f"Error during parsing: {e}")
-    
-if __name__ == "__main__":
-    main()
