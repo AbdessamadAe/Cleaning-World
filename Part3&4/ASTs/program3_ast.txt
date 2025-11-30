@@ -1,0 +1,15 @@
+Program
+  WorldDef: TurnBacktrackTest
+    Size: (5, 5)
+    Entry: (2, 2, 'E')
+    Exit: (4, 4, 'W')
+  Functions
+  Agent: NavigationAgent
+    Move
+    Turn: LEFT
+    Move
+    Turn: RIGHT
+    Move
+    Backtrack
+    Report
+      Int: 0

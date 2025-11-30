@@ -1,0 +1,63 @@
+Program
+  WorldDef: ObstacleRelopTest
+    Size: (8, 8)
+    Entry: (1, 1, 'N')
+    Exit: (8, 8, 'S')
+    Obstacle: (4, 4)
+    Obstacle: (5, 5)
+  Functions
+  Agent: LogicAgent
+    VarDecl: counter
+      Int: 0
+    VarDecl: limit
+      Int: 10
+    VarDecl: found
+      Int: 0
+    While
+      RelOp: LT
+        Var: counter
+        Var: limit
+      Body
+        If
+          Sense: OBSTACLE
+          Then
+            Assign: found
+              Int: 1
+          Else
+            Assign: found
+              Int: 0
+        If
+          And
+            RelOp: EQ
+              Var: found
+              Int: 1
+            Unvisited
+          Then
+            Backtrack
+          Else
+            If
+              Or
+                RelOp: NEQ
+                  Var: counter
+                  Int: 0
+                RelOp: EQ
+                  Var: found
+                  Int: 1
+              Then
+                Move
+              Else
+                Move
+        Assign: counter
+          BinOp: +
+            Var: counter
+            Int: 1
+    If
+      RelOp: GT
+        Var: limit
+        Var: counter
+      Then
+        Report
+          Int: 0
+      Else
+        Report
+          Int: 1

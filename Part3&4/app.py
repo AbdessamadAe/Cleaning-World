@@ -1,19 +1,26 @@
 from parser.parser import parse
+from semantics_analyzer.semantic import analyze_cst
 import os
-# from semantics_analyzer.semantic import analyze_cst
 
 def run_file(path):
     cst = parse(filename=path)
     print("===== CST =====")
     print(cst)
 
-    # I commented the analyzer to avoid errs while testing the parser
-    # the analyzer should be changed to output to the ASTs foolder.
-    """
     ast, errors = analyze_cst(cst)
     if ast:
         print("\n===== AST =====")
         print(ast)
+        
+        # Write AST to file
+        filename = os.path.basename(path)
+        name_without_ext = os.path.splitext(filename)[0]
+        asts_dir = os.path.join(os.path.dirname(__file__), 'ASTs')
+        os.makedirs(asts_dir, exist_ok=True)
+        ast_filepath = os.path.join(asts_dir, f"{name_without_ext}_ast.txt")
+        with open(ast_filepath, 'w') as f:
+            f.write(str(ast))
+        print(f"\nAST written to: {ast_filepath}")
     else:
         print("No AST produced")
 
@@ -21,7 +28,6 @@ def run_file(path):
         print("\n===== SEMANTIC ERRORS =====")
         for e in errors:
             print("- " + e)
-    """
 
 if __name__ == '__main__':
     import sys

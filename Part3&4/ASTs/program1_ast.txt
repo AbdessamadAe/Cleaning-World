@@ -1,0 +1,25 @@
+Program
+  WorldDef: SmallRoom
+    Size: (5, 5)
+    Entry: (1, 1, 'N')
+    Exit: (5, 5, 'S')
+    Dirt: (3, 3)
+  Functions
+  Agent: BasicCleaner
+    VarDecl: dirt_collected
+      Int: 0
+    While
+      Unvisited
+      Body
+        If
+          Sense: DIRT
+          Then
+            Clean
+            Assign: dirt_collected
+              BinOp: +
+                Var: dirt_collected
+                Int: 1
+          Else
+            Move
+    Report
+      Var: dirt_collected

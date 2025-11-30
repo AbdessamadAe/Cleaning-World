@@ -358,10 +358,14 @@ def write_cst_to_file(cst, filename):
     """Write the Concrete Syntax Tree to output file"""
     base_name = os.path.basename(filename)
     name_without_ext = os.path.splitext(base_name)[0]
-    cst_filename = f"CSTs/{name_without_ext}_cst.txt"
     
-    # Ensure output directory exists
-    os.makedirs('CSTs', exist_ok=True)
+    # Write to Part3&4/CSTs/ directory (absolute path from parser location)
+    parser_dir = os.path.dirname(__file__)
+    csts_dir = os.path.join(parser_dir, '..', 'CSTs')
+    csts_dir = os.path.abspath(csts_dir)
+    os.makedirs(csts_dir, exist_ok=True)
+    
+    cst_filename = os.path.join(csts_dir, f"{name_without_ext}_cst.txt")
     
     with open(cst_filename, 'w') as f:
         f.write(f"Concrete Syntax Tree for: {base_name}\n")

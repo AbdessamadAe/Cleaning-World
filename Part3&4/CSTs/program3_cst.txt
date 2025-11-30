@@ -1,0 +1,21 @@
+Concrete Syntax Tree for: program3.cl
+==================================================
+program [line 1]
+  world_def: TurnBacktrackTest [line 1]
+    world_body [line 2]
+      size_decl: (5, 5) [line 2]
+      entry_decl: (2, 2, 'E') [line 3]
+      exit_decl: (4, 4, 'W') [line 4]
+  function_list_opt
+  agent_def: NavigationAgent [line 7]
+    stmt_list [line 8]
+      move_stmt [line 8]
+      turn_stmt [line 9]
+        left_dir: LEFT [line 9]
+      move_stmt [line 10]
+      turn_stmt [line 11]
+        right_dir: RIGHT [line 11]
+      move_stmt [line 12]
+      backtrack_stmt [line 13]
+      report_stmt [line 14]
+        integer_literal: 0 [line 14]

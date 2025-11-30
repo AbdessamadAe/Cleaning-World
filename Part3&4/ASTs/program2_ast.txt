@@ -1,0 +1,29 @@
+Program
+  WorldDef: FunctionTest
+    Size: (10, 10)
+    Entry: (1, 1, 'N')
+    Exit: (10, 10, 'S')
+  Functions
+    Function: add
+      Params
+        Param: X
+        Param: Y
+      RetType: int
+      Body
+        Return
+          BinOp: +
+            Var: X
+            Var: Y
+  Agent: FunctionAgent
+    VarDecl: result
+      Int: 0
+    VarDecl: x
+      Int: 5
+    VarDecl: y
+      Int: 3
+    Assign: result
+      Call: add
+        Var: x
+        Var: y
+    Report
+      Var: result
