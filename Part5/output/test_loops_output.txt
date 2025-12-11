@@ -1,0 +1,15 @@
+
+======================================================================
+EXECUTION RESULTS
+======================================================================
+
+Agent State:
+  Position: (1, 1)
+  Direction: N
+  Dirt cleaned: 0
+
+Output/Actions:
+  1. [REPORT] 0
+  2. [REPORT] 1
+  3. [REPORT] 2
+  4. [REPORT] 99
