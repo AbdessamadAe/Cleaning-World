@@ -8,6 +8,7 @@ AGENT ConditionalAgent {
     VAR x = 5;
     VAR y = 3;
     
+    
     IF x GT y THEN
         REPORT 1;
     ELSE

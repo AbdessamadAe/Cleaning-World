@@ -12,10 +12,15 @@ part3_4_dir = os.path.join(os.path.dirname(__file__), '..', 'Part3&4')
 if part3_4_dir not in sys.path:
     sys.path.insert(0, part3_4_dir)
 
+# Remember the original working directory (where the user invoked the script)
+# so we can resolve relative input paths correctly even though this script
+# temporarily changes cwd to import modules from `Part3&4`.
+ORIGINAL_CWD = os.getcwd()
+
 # Now we can import from Part3&4 directly
 os.chdir(part3_4_dir)  # Change to Part3&4 so parser can find lexer, etc.
-from parser.parser import parse
-from semantics_analyzer.semantic import analyze_cst
+from parser.parser import parse  # type: ignore
+from semantics_analyzer.semantic import analyze_cst  # type: ignore
 
 # Return to Part5 and import interpreter
 os.chdir(os.path.join(os.path.dirname(__file__)))
@@ -163,6 +168,12 @@ def main():
         print("Error: no filename provided")
         sys.exit(1)
     filename = args[0]
+    # Resolve filename relative to the directory where the user ran the
+    # command (ORIGINAL_CWD). This avoids "File not found" errors when the
+    # script has previously changed cwd to import parser modules.
+    if not os.path.isabs(filename):
+        filename = os.path.abspath(os.path.join(ORIGINAL_CWD, filename))
+
     if not os.path.exists(filename):
         print(f"Error: File not found: {filename}")
         sys.exit(1)
