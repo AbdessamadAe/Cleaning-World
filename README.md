@@ -1,70 +1,85 @@
-Cleaning-World Compiler Project
+# Cleaning-World Compiler Project
 
-Languages and Compilers – Final Project (Parts 1–5)
+## Languages and Compilers – Final Project (Parts 1–5)
 
-Overview
+---
 
-This repository contains the complete implementation of the Cleaning-World language and its execution pipeline, developed as a semester-long project for the Languages and Compilers course at AUI.
+## 📘 Overview
 
-The project implements all major phases of a compiler, from language design and lexical analysis to execution via direct interpretation. The language allows users to define a grid-based world and program an agent using variables, control structures, functions, and built-in robot actions.
+This repository contains the complete implementation of the **Cleaning-World programming language** and its execution pipeline, developed as a semester-long project for the **Languages and Compilers** course at **Al Akhawayn University (AUI)**.
 
-Project Parts
+The project implements all major phases of a compiler, from **language design** and **lexical analysis** to **parsing**, **static semantic analysis**, and **execution via direct interpretation**.
 
-The project is structured according to the five required deliveries:
+The Cleaning-World language allows users to:
+- Define a grid-based world
+- Program an autonomous cleaning agent
+- Use variables, control structures, and functions
+- Execute built-in robot actions
 
-Part 1 – Language Design
+All components are fully integrated and tested end-to-end.
 
-Definition of the Cleaning-World language
+---
 
-Lexeme specification table (lexeme, regex, token, additional info)
+## ⚙️ How the System Works (High-Level Compiler Pipeline)
 
-Grammar specification (BNF/EBNF)
+The system processes source code through a standard compiler pipeline:
 
-Sample programs covering the language constructs
+1. **Lexical Analysis**  
+   The lexer converts source code into a stream of tokens using regular expressions.
 
-Part 2 – Lexical Analyzer
+2. **Parsing**  
+   The parser validates syntax and produces a **Concrete Syntax Tree (CST)**.
 
-Lexer implemented using PLY (Python Lex)
+3. **Static Semantic Analysis**  
+   The CST is checked for semantic correctness and transformed into an **Abstract Syntax Tree (AST)**.
 
-Tokenization of keywords, identifiers, literals, operators, punctuation
+4. **Interpretation**  
+   The AST is executed directly by the interpreter using a stack-based execution model.
 
-Symbol table initialization and identifier handling
+All phases are connected and executed by the script:
 
-Lexer output generated for sample programs
 
-Part 3 – Parser
+---
 
-Parser implemented using PLY Yacc (LALR(1))
+## 🧩 Project Parts and Deliverables
 
-Grammar implementation based on the language design
+The project is structured according to the five required deliveries.
 
-Concrete Syntax Tree (CST) generation
+### **Part 1 – Language Design**
+- Definition of the Cleaning-World language
+- Lexeme specification table (`design-table.txt`)
+- Grammar specification (`BNF.txt`)
+- Sample programs covering all language constructs
 
-CSTs written to files for each test program
+### **Part 2 – Lexical Analyzer**
+- Lexer implemented using **PLY (Python Lex)**
+- Tokenization of keywords, identifiers, literals, operators, and punctuation
+- Symbol table initialization and identifier handling
+- Lexer output generated for sample programs
 
-Part 4 – Static Semantics Analyzer
+### **Part 3 – Parser**
+- Parser implemented using **PLY Yacc (LALR(1))**
+- Grammar implementation based on the language design
+- **Concrete Syntax Tree (CST)** generation
+- CSTs written to files for each test program
 
-Declaration-before-use checks
+### **Part 4 – Static Semantics Analyzer**
+- Declaration-before-use checks
+- Duplicate declaration detection
+- Function argument validation
+- Conversion from CST to **Abstract Syntax Tree (AST)**
+- Readable ASTs generated for all test programs
 
-Duplicate declaration detection
+### **Part 5 – Execution via Direct Interpretation**
+- Direct interpretation of the AST (no code generation)
+- Stack-based execution for function calls
+- Unified execution pipeline connecting all phases
+- Runtime output written to files and optionally printed
 
-Function argument validation
+---
 
-Conversion from CST to Abstract Syntax Tree (AST)
+## 📂 Repository Structure
 
-Readable ASTs generated for each test program
-
-Part 5 – Execution via Direct Interpretation
-
-Direct interpretation of the AST (no code generation)
-
-Stack-based execution for function calls
-
-Unified execution pipeline connecting all phases
-
-Runtime output written to files and optionally printed
-
-Repository Structure
 Cleaning-World-main/
 │
 ├── Part1&2/
@@ -73,7 +88,7 @@ Cleaning-World-main/
 │   ├── lexer/
 │   │   ├── lexer.py
 │   │   └── tokens.py
-│   └── programs/                # Sample programs for Parts 1 & 2
+│   └── programs/                # Sample programs (Parts 1 & 2)
 │
 ├── Part3&4/
 │   ├── parser/
@@ -83,7 +98,7 @@ Cleaning-World-main/
 │   │   └── ast_nodes.py
 │   ├── CSTs/                     # Generated CST files
 │   ├── ASTs/                     # Generated AST files
-│   └── programs/                # Test programs for Parts 3 & 4
+│   └── programs/                # Test programs (Parts 3 & 4)
 │
 ├── Part5/
 │   ├── run_complete.py           # Full pipeline: parse → analyze → execute
@@ -94,85 +109,64 @@ Cleaning-World-main/
 ├── Final_Report.pdf              # Final written report
 └── README.md
 
-How the System Works (High-Level)
+---
+### 💻 Requirements & Running the Project
 
-Lexical Analysis
-The lexer converts source code into a token stream using regular expressions.
+The project requires Python 3.x and the `ply` library.
 
-Parsing
-The parser validates syntax and produces a Concrete Syntax Tree (CST).
+#### **Installation**
 
-Static Semantic Analysis
-The CST is checked for semantic correctness and transformed into an AST.
+Install dependencies using pip:
 
-Interpretation
-The AST is executed directly by the interpreter using a stack-based model.
-
-All phases are connected by the script Part5/run_complete.py.
-
-Requirements
-
-Python 3.x
-
-ply (Python Lex-Yacc)
-
-Install dependencies:
-
+```bash
 pip install ply
-
 Running the Project
+Execute the run_complete.py script from the repository root, providing the program file path.
 
-From the repository root:
+Run with console output (Recommended):
+
+Bash
 
 python Part5/run_complete.py --print Part5/programs/test_loops.cl
+Run silently (output written to file only):
 
-
-To run silently (output written to file only):
+Bash
 
 python Part5/run_complete.py Part5/programs/test_loops.cl
+Output location
 
+Execution results are written to: Part5/output/<program_name>_output.txt
 
-Execution results are written to:
+🧪 Example Programs (Part 5)
+The following programs are provided in Part5/programs/ and collectively exercise all major language features:
 
-Part5/output/<program_name>_output.txt
+test_conditionals.cl: Tests relational and boolean expressions.
 
-Example Programs (Part 5)
+test_loops.cl: Tests looping constructs and variable updates.
 
-The following programs are provided in Part5/programs/:
+test_functions.cl: Tests function definitions and calls.
 
-test_conditionals.cl – tests relational and boolean expressions
+🎯 Design Choices (Summary)
+The following choices were made to prioritize simplicity, correctness, and full integration of all compiler phases:
 
-test_loops.cl – tests looping and variable updates
+Single-file programs to avoid unnecessary file-handling complexity.
 
-test_functions.cl – tests function definitions and calls
+World initialization handled directly inside the language.
 
-These programs collectively exercise all major language constructs.
+Iterative constructs instead of recursion for loops.
 
-Design Choices (Summary)
+Functions with pass-by-value parameters and simple return types.
 
-Single-file programs to avoid unnecessary file-handling complexity
+LALR(1) parsing using PLY to avoid LL(1) grammar constraints.
 
-Direct world initialization inside the language
+Direct AST interpretation instead of code generation to reduce complexity.
 
-Iteration instead of recursion for loops
+📄 Documentation
+Full design rationale and explanations are available in Final_Report.pdf.
 
-Functions with pass-by-value parameters and simple return types
+CST and AST files are generated for all test programs.
 
-LALR(1) parsing using PLY to avoid LL(1) grammar constraints
+Lexer and parser coverage is documented in the report.
 
-Direct AST interpretation instead of code generation to reduce complexity
-
-These choices prioritize simplicity, correctness, and full integration of all compiler phases.
-
-Documentation
-
-Full design rationale, feedback incorporation, and detailed explanations are available in Final_Report.pdf
-
-CST and AST files are provided for all test programs
-
-Lexer and parser coverage is documented using line-based testing tables in the report
-
-Final Notes
-
-This repository represents the final integrated submission (Parts 1–5) of the Cleaning-World project.
-All components are functional, connected, and tested end-to-end.
+✅ Final Notes
+This repository represents the final integrated submission (Parts 1–5) of the Cleaning-World compiler project. All components are fully implemented, correctly connected, and tested end-to-end.
